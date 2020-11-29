@@ -73,7 +73,10 @@ class PengaduanController extends Controller
     public function show(Pengaduan $pengaduan)
     {
         $item = $pengaduan;
-
+        $item['nama_masyarakat'] = $pengaduan->masyarakat()
+                                        ->select('nama')
+                                        ->first()['nama'];
+        // dd($item);
         return view('pages.pengaduan.detail', compact('item'));
     }
 

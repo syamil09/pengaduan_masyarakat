@@ -31,10 +31,9 @@ Route::get('logout', 'HomeController@logout')->name('logout');
 
 Route::group(['prefix' => 'cms'], function() {
 	Route::get('/','DashboardController@index');
-
-	Route::resource('portfolio-category', 'PortfolioCategoryController');
 	Route::resource('pengaduan', 'PengaduanController');
-	Route::resource('service', 'ServiceController');
+	Route::resource('tanggapan', 'TanggapanController', ['except' => 'index']);
+	Route::resource('petugas', 'PetugasController');
 	Route::resource('team', 'TeamController');
 
 	Route::get('hero', 'LandingController@heroGet')->name('hero.index');

@@ -37,7 +37,6 @@
         <!--<h6 class="collapse-header">Custom Components:</h6> -->
             <a class="collapse-item {{ Request::is('cms/hero*') ? 'active' : '' }}" href="{{ route('hero.index') }}">Hero</a>
             <a class="collapse-item {{ Request::is('cms/about*') ? 'active' : '' }}" href="{{ route('about.index') }}">About Us</a>
-            <a class="collapse-item {{ Request::is('cms/service*') ? 'active' : '' }}" href="{{ route('service.index') }}">Services</a>
             <a class="collapse-item {{ Request::is('cms/team*') ? 'active' : '' }}" href="{{ route('team.index') }}">Team</a>
           </div>
         </div>
@@ -45,9 +44,9 @@
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('portfolio-category.index') }}">
+        <a class="nav-link" href="{{ route('petugas.index') }}">
           <i class="fas fa-fw fa-table"></i>
-          <span>Portfolio Categoy</span></a>
+          <span>Petugas</span></a>
       </li>
 
       <li class="nav-item">

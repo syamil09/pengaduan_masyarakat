@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\PortfolioCategory as Category;
+use App\Models\Tanggapan;
 
-class PortfolioCategoryController extends Controller
+class TanggapanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -59,7 +59,9 @@ class PortfolioCategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $items = Tanggapan::whereIdPengaduan($id)->get();
+
+        return view('pages.tanggapan.index', compact('items'));
     }
 
     /**
@@ -70,9 +72,9 @@ class PortfolioCategoryController extends Controller
      */
     public function edit($id)
     {
-        $itemEdit = Category::findOrFail($id);
-        $items = Category::all();
-        return view('pages.portfolio_category.index', compact('items', 'itemEdit'));
+        $item = Tanggapan::find($id) ?? '';
+
+        return view('pages.pengaduan.tanggapan', compact('item'));
     }
 
     /**
@@ -84,7 +86,18 @@ class PortfolioCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([    
+            'nama'     => 'required',
+            'username' => 'required|unique:petugas',
+            'telpon' => 'string',
+            'level' => 'required|in:petugas,admin'
+        ]);
+
+        // $data = $request->only('foto', 'isi_laporan', 'judul_pengaduan');
+                     
+        Pengaduan::find($id)->update($request->all());
+
+        return redirect()->route('pengaduan.index')->withSucceed('Data Updated');
     }
 
     /**

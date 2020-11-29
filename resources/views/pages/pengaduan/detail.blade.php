@@ -1,6 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
+<a href="{{ route('pengaduan.index') }}" class="btn btn-primary btn-sm mb-3">Kembali</a>
 <div class="card shadow">
 	<div class="card-body">
 
@@ -9,13 +10,24 @@
 			<p>{{ $item->judul_pengaduan }}</p>
 		</div>
 		<div class="form-group">
+			<label for=""><b>NIK Pengadu</b></label>
+			<p>{{ $item->nik }}</p>
+		</div>
+		<div class="form-group">
+			<label for=""><b>NIK Pengadu</b></label>
+			<p>{{ $item->nama_masyarakat }}</p>
+		</div>
+		<div class="form-group">
+			<label for=""><b>Tanggal Pengaduan</b></label>
+			<p>{{ $item->tgl_pengaduan }}</p>
+		</div>
+		<div class="form-group">
 			<label for=""><b>Deskripsi Pengaduan</b></label>
 			<p>{{ $item->isi_laporan }}</p>
 		</div>
 		<div class="form-group">
 			<label for=""><b>Foto</b></label>
-			<img src="{{ $item->foto }}" alt="Foto Sebelumnnya" class="col-12">
-			
+			<img src="{{ $item->foto }}" alt="Foto Sebelumnnya" class="col-12">	
 		</div>
 
 		<hr>
@@ -27,6 +39,8 @@
 		<div class="form-group row">
 			<label for="" class="col-md-2"><b>Nama Petugas : </b></label>
 			<p class="col-md-9">Diki</p>
+			<label for="" class="col-md-2"><b>Tgl Tanggapan : </b></label>
+			<p class="col-md-9">21 Nov 2020</p>
 			<label for="" class="col-md-2"><b>Tanggapan : </b></label>
 			<p class="col-md-9">
 				Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus eos molestiae iusto ullam consectetur aspernatur totam adipisci et illo harum fugiat omnis aliquam sint cupiditate hic rerum corrupti, provident ipsam.
