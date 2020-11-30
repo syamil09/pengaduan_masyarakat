@@ -6,9 +6,11 @@
 </div>
 
 <div class="card shadow mb-4">
+		@if (session()->get('level') == 'masyarakat')
 		<div class="card-header py-3">
 			<a href="{{ route('pengaduan.create') }}" class="btn btn-primary">+ add new</a>
 		</div>
+		@endif
 	    <div class="card-body">
 	        <div class="table-responsive">
 	                @if(session('succeed'))
@@ -51,14 +53,19 @@
 								</span>
 	                      	</td>
 	                      <td align="right">
+	                      
+	                      	@if(session()->get('level') == 'petugas' || session()->get('level') == 'admin')
 	                        <a href="{{ route('tanggapan.show',$item->id) }}" class="btn btn-primary btn-sm">Tanggapan</a>
+	                        @endif
 	                        <a href="{{ route('pengaduan.show',$item->id) }}" class="btn btn-info btn-sm">Detail</a>
+	                        @if(session()->get('level') == 'masyarakat')
 	                        <a href="{{ route('pengaduan.edit',$item->id) }}" class="btn btn-warning btn-sm">Edit</a>
 	                        <form action="{{ route('pengaduan.destroy', $item->id) }}" method="post" class="d-inline">
 	                          @csrf
 	                          @method('DELETE')
 	                          <input type="submit" class="btn btn-danger btn-sm delete" value="Delete"></input>
 	                        </form>
+	                        @endif
 	                      </td>
 	                    </tr>
 	                    @empty

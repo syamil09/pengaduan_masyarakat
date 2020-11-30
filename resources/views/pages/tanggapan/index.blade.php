@@ -1,10 +1,20 @@
 @extends('layouts.default')
 
 @section('content')
-<div class="d-sm-flex align-items-center justify-content-between mb-2">
-    <h1 class="h3 mb-0 text-gray-800"><b>Tanggapan Pengaduan</b></h1><br>
+<div class="row">
+	<div class="col-1">
+		<a href="{{ route('pengaduan.index') }}" class="btn btn-secondary btn-circle mr-3">
+			<i class="fas fa-arrow-left"></i>
+		</a>
+	</div>
+	<div class="col-10 ml-n4">
+		<div class="d-sm-flex align-items-center justify-content-between mb-2">
+		    <h1 class="h3 mb-0 text-gray-800"><b>Tanggapan Pengaduan</b></h1><br>
+		</div>
+		<p>{{ $pengaduan->judul_pengaduan }}</p>
+	</div>
 </div>
-<p>{{ $pengaduan->judul_pengaduan }}</p>
+
 <div class="card shadow mb-4">
 		<div class="card-header py-3">
 

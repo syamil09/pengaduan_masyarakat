@@ -13,35 +13,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'LandingController@index');
+Route::get('/', 'HomeController@landingFrontend');
 Route::get('/login-masyarakat', 'AuthController@loginMasyarakat')->name('login-masyarakat');
 Route::get('/login-petugas', 'AuthController@loginPetugas')->name('login-petugas');
 Route::post('/login-proses', 'AuthController@loginProses')->name('login-proses');
 Route::post('/register', 'AuthController@registerProses')->name('register-proses');
 Route::get('/register', 'AuthController@registerMasyarakat')->name('register');
-// Route::group(['prefix' => 'member'], function() {
-// 	// Route::get('/home', 'MemberController@')
-// })
+Route::get('logout', 'AuthController@logout')->name('logout');
 
 
-// Auth::routes();
 
-// Route::get('/login-masyarakat', 'HomeController@index')->name('home');
-Route::get('logout', 'HomeController@logout')->name('logout');
+Route::group([
+		'prefix' => 'cms',
+		'middleware' => 'login'
+	], function() {
 
-Route::group(['prefix' => 'cms'], function() {
-	Route::get('/','DashboardController@index');
+	Route::get('profile/{id}', 'AuthController@showProfile')->name('profile.show');
+	Route::post('profile/{id}', 'AuthController@updateProfile')->name('profile.update');
+
+	Route::get('/','HomeController@dashboard')->name('home-dashboard');
 	Route::post('pengaduan/{id}/set-status', 'PengaduanController@setStatus')->name('pengaduan.set-status');
 	Route::resource('pengaduan', 'PengaduanController');
 	Route::resource('tanggapan', 'TanggapanController', ['except' => ['index', 'create']]);
 	Route::get('tanggapan/create/{tanggapan}', 'TanggapanController@create')->name('tanggapan.create');
 	Route::resource('petugas', 'PetugasController');
-	Route::resource('team', 'TeamController');
-
-	Route::get('hero', 'LandingController@heroGet')->name('hero.index');
-	Route::put('hero/{id}', 'LandingController@heroUpdate')->name('hero.update');
-
-	Route::get('about', 'LandingController@aboutGet')->name('about.index');
-	Route::put('about/{id}', 'LandingController@aboutUpdate')->name('about.update');
 });
 

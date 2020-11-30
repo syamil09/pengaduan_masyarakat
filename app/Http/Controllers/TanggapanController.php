@@ -46,7 +46,7 @@ class TanggapanController extends Controller
 
         $request->merge([
             'tgl_tanggapan' => date('Y-m-d'),
-            'id_petugas'    => 4 
+            'id_petugas'    => session()->get('user_id')
         ]);
 
         $data = $request->only('tanggapan', 'tgl_tanggapan', 'id_petugas', 'id_pengaduan');

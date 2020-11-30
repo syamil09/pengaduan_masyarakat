@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Login Masyarakat</title>
+	<title>Login Petugas</title>
 	<link rel="stylesheet" href="{{ asset('template/lib/bootstrap/css/bootstrap.min.css') }}">
 </head>
 <body>
@@ -11,7 +11,7 @@
 	    <div class="row justify-content-center">
 	        <div class="col-md-8">
 	            <div class="card mt-5">
-	                <div class="card-header">Login Masyarakat</div>
+	                <div class="card-header">Login Petugas</div>
 
 	                <div class="card-body">
 	                	@if(session('succeed'))
@@ -24,8 +24,8 @@
 	                    <form method="POST" action="{{ route('login-proses') }}">
 	                        @csrf
 	                        <div class="form-group row">
-	                        	<input type="hidden" name="type" value="masyarakat">
-	                            <label for="username" class="col-md-4 col-form-label text-md-right">NIK / Username</label>
+	                        	<input type="hidden" name="type" value="petugas">
+	                            <label for="username" class="col-md-4 col-form-label text-md-right">Username</label>
 
 	                            <div class="col-md-6">
 	                                <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
@@ -37,7 +37,6 @@
 	                                @enderror
 	                            </div>
 	                        </div>
-
 
 	                        <div class="form-group row">
 	                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
@@ -62,10 +61,6 @@
 	                                </button>
 
 	                            </div>
-	                            <div class="col-md-6 offset-md-4 text-center mt-3">
-	                            	Belum punya akun? <a href="{{ route('register') }}" class="">register</a>
-	                            </div>
-	                            
 	                        </div>
 	                    </form>
 	                </div>

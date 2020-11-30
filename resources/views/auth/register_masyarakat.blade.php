@@ -85,9 +85,7 @@
 	                                    </span>
 	                                @enderror
 	                            </div>
-	                        </div>
-
-	                        
+	                        </div>                    
 
 	                        <div class="form-group row">
 	                        	<div class="col-md-6 offset-md-4">
@@ -97,7 +95,7 @@
 
 	                            </div>
 	                            <div class="col-md-6 offset-md-4 text-center mt-3">
-	                            	Sudah punya akun? <a href="{{ route('register') }}" class="">Login</a>
+	                            	Sudah punya akun? <a href="{{ route('login-masyarakat') }}" class="">Login</a>
 	                            </div>
 	                            
 	                        </div>

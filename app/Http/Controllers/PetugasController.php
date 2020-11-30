@@ -17,7 +17,7 @@ class PetugasController extends Controller
     public function index()
     {
         $items = Petugas::all();
-        // return $items;
+   
         return view('pages.petugas.index', compact('items'));
     }
 
@@ -41,17 +41,17 @@ class PetugasController extends Controller
     {
         // validate input value
         $this->validate($request, [
-            'nama' => 'required|string|max:40',
+            'nama'     => 'required|string|max:40',
             'username' => 'required|max:25|unique:petugas',
             'password' => 'required|max:30',
-            'telpon' => 'required|max:20',
-            'level' => 'required|in:admin,petugas'
+            'telpon'   => 'required|max:20',
+            'level'    => 'required|in:admin,petugas'
         ],
         [
-            'required' => 'Kolom :attribute harus diisi.',
-            'size' => 'Jumlah karakter :attribute harus :size digit.',
-            'unique' => ':attribute harus unik, :attribute tersebut sudah digunakan',
-            'max' => 'Maksimal jumlah karakter :max digit.',
+            'required' => 'Kolom :attribute harus diisi.',     
+            'unique'   => ':attribute harus unik, :attribute tersebut sudah digunakan',
+            'size'     => 'Jumlah karakter :attribute harus :size digit.',
+            'max'      => 'Maksimal jumlah karakter :max digit.',
 
         ]);
 
@@ -99,8 +99,8 @@ class PetugasController extends Controller
         $request->validate([    
             'nama'     => 'required',
             'username' => 'required|max:255',
-            'telpon' => 'required',
-            'level' => 'required|in:admin,petugas'
+            'telpon'   => 'required',
+            'level'    => 'required|in:admin,petugas'
         ]);
 
         $data = $request->all();

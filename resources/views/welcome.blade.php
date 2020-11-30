@@ -9,7 +9,7 @@
           <p>Lorem ipsum dolor sit amet consectetur, adipisicing, elit. Quam enim quia velit voluptatem in mollitia? Laudantium saepe incidunt labore ipsum, modi esse quia non eveniet nam dolorem atque quod aperiam.</p>
           <div class="row">
             <a href="{{ route('login-masyarakat') }}" class="btn-get-started scrollto col-md-6 col-sm-12 text-center">Masuk Sebagai Masyarakat</a>
-            <a href="#services" class="btn-services scrollto col-md-6 col-sm-12 text-center">Masuk Sebagai Petugas</a>
+            <a href="{{ route('login-petugas') }}" class="btn-services scrollto col-md-6 col-sm-12 text-center">Masuk Sebagai Petugas</a>
           </div>  
         </div>
         <div class="intro-img col-md-6 col-sm-12">
@@ -23,7 +23,7 @@
     <!--==========================
       About Us Section
     ============================-->
-    <section id="about">
+    <!-- <section id="about">
       <div class="container">
 
         <header class="section-header">
@@ -64,13 +64,14 @@
         </div>
 
       </div>
-    </section><!-- #about -->
+    </section> -->
+    <!-- #about -->
 
 
     <!--==========================
       Why Us Section
     ============================-->
-    <section id="why-us" class="wow fadeIn">
+    <!-- <section id="why-us" class="wow fadeIn">
       <div class="container">
         <header class="section-header">
           <h3>Why choose us?</h3>
@@ -139,12 +140,12 @@
         </div>
 
       </div>
-    </section>
+    </section> -->
 
     <!--==========================
       Contact Section
     ============================-->
-    <section id="contact">
+    <!-- <section id="contact">
       <div class="container-fluid">
 
         <div class="section-header">
@@ -205,6 +206,7 @@
         </div>
 
       </div>
-    </section><!-- #contact -->
+    </section> -->
+    <!-- #contact -->
 
 @endsection

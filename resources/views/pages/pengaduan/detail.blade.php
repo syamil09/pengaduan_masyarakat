@@ -20,8 +20,8 @@
 			<p>{{ $item->nik }}</p>
 		</div>
 		<div class="form-group">
-			<label for=""><b>NIK Pengadu</b></label>
-			<p>{{ $item->nama_masyarakat }}</p>
+			<label for=""><b>Nama Pengadu</b></label>
+			<p>{{ $item->masyarakat->nama }}</p>
 		</div>
 		<div class="form-group">
 			<label for=""><b>Tanggal Pengaduan</b></label>
@@ -55,11 +55,12 @@
 		</div>
 		<hr>
 		@empty
-
-		@endforelse
 		<div class="form-group row">
-			
+			<p class="col-12 text-center">Belum ada tanggapan dari petugas</p>
 		</div>
+		
+		@endforelse
+		
 	</div>
 </div>
 @endsection

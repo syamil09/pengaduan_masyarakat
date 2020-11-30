@@ -122,8 +122,6 @@ class PengaduanController extends Controller
 
     public function setStatus(Request $request, $id)
     {
-        // dd($request->all(), $pengaduan);
-
         Pengaduan::findOrfail($id)->update([
             'status' => $request->status
         ]);

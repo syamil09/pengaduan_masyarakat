@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Session;
+use App\Models\Pengaduan;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -15,7 +17,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -23,9 +25,19 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function landingFrontend()
     {
-        return view('home');
+        return view('welcome');
+    }
+
+    public function dashboard()
+    {
+        $item = [
+            'jumlah_pengaduan' => Pengaduan::count(),
+            'jumlah_pengaduan_selesai' => Pengaduan::whereStatus('selesai')->count()
+        ];
+
+        return view('pages.dashboard', compact('item'));
     }
 
     public function logout()

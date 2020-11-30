@@ -22,7 +22,7 @@
 		<div class="form-group">
 			<label for="">Tanggapan</label>
 			<textarea 	name="tanggapan" id="" cols="30" rows="10"
-						class="form-control">{{ old('tanggapan') ?? $item->tanggapan ?? '' }}</textarea>
+						class="form-control">{{ old('tanggapan') ?? '' }}</textarea>
 			@error('tanggapan')
 			<div class="invalid-feedback">{{$message}}</div>
 			@enderror
