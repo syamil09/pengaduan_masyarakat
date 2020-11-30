@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
     {
         DB::table('petugas')->insert([
         	[
-        		'name' => 'admin',
+        		'nama' => 'admin',
 	        	'username' => 'admin',
 	        	'password' => Hash::make('admin'),
 	        	'level' => 'admin',
