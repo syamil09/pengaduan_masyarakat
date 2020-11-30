@@ -113,10 +113,12 @@ class AuthController extends Controller
 
         $update = $type == 'masyarakat'
                   ? Masyarakat::whereNik($id)
-                  : Petugas::find($id);
-        $update->update($data);
+                  : Petugas::whereId($id);
 
-        $request->session()->put('username', $checkExists['username']);
+        if ($update->update($data)) {
+            $request->session()->put('username', $update->first()['username']);
+            $request->session()->put('nama', $update->first()['nama']);
+        }
 
         return redirect()->route('profile.show', $id)->withSucceed('Berhasil update profile'); 
 

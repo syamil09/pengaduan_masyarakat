@@ -13,14 +13,13 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        DB::table('petugas')->insert([
         	[
         		'name' => 'admin',
-	        	'email' => 'admin@gmail.com',
-	        	'password' => Hash::make('admin123'),
-	        	'role' => 'super_admin',
-	        	'created_at' => date('Y-m-d'),
-	        	'updated_at' => date('Y-m-d'),
+	        	'username' => 'admin',
+	        	'password' => Hash::make('admin'),
+	        	'level' => 'admin',
+	        	'telpon' => '0192192',
         	],
         	
         ]);
