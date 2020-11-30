@@ -68,7 +68,7 @@ class TanggapanController extends Controller
     {
         $items = Tanggapan::with('petugas')->whereIdPengaduan($id)->get();
         $pengaduan = Pengaduan::findOrFail($id);
-        
+
         return view('pages.tanggapan.index', compact('items', 'pengaduan'));
     }
 
@@ -80,9 +80,9 @@ class TanggapanController extends Controller
      */
     public function edit($id)
     {
-        $item = Tanggapan::find($id) ?? '';
+        $item = Tanggapan::with('pengaduan')->find($id) ?? '';
 
-        return view('pages.tanggapan.create', compact('item'));
+        return view('pages.tanggapan.edit', compact('item'));
     }
 
     /**
@@ -95,17 +95,15 @@ class TanggapanController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([    
-            'nama'     => 'required',
-            'username' => 'required|unique:petugas',
-            'telpon' => 'string',
-            'level' => 'required|in:petugas,admin'
+            'tanggapan' => 'required',
         ]);
 
-        // $data = $request->only('foto', 'isi_laporan', 'judul_pengaduan');
+        $data = $request->only('tanggapan');
                      
-        Pengaduan::find($id)->update($request->all());
-
-        return redirect()->route('pengaduan.index')->withSucceed('Data Updated');
+        $update = Tanggapan::findOrFail($id);
+        $update->update($data);
+    
+        return redirect()->route('tanggapan.show', $update->id_pengaduan)->withSucceed('Data Updated');
     }
 
     /**

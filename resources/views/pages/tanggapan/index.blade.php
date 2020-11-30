@@ -69,8 +69,8 @@
 	                      <td>{{ $item->tanggapan }}</td>
 	                      <td>{{ $item->petugas->nama }}</td>
 	                      <td align="right">
-	                        <a href="{{ route('pengaduan.show',$item->id) }}" class="btn btn-info btn-sm">Detail</a>
-	                        <a href="{{ route('pengaduan.edit',$item->id) }}" class="btn btn-warning btn-sm">Edit</a>
+	                        <!-- <a href="{{ route('pengaduan.show',$item->id) }}" class="btn btn-info btn-sm">Detail</a> -->
+	                        <a href="{{ route('tanggapan.edit',$item->id) }}" class="btn btn-warning btn-sm">Edit</a>
 	                        <form action="{{ route('tanggapan.destroy', $item->id) }}" method="post" class="d-inline">
 	                          @csrf
 	                          @method('DELETE')
