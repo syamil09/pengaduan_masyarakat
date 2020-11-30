@@ -62,7 +62,7 @@ class AuthController extends Controller
     			// set session
     			$request->session()->put('level', 'masyarakat');
     			$request->session()->put('nama', $checkExists['nama']);
-    			$request->session()->put('nik', $checkExists['nik']);
+    			$request->session()->put('user_id', $checkExists['nik']);
     			$request->session()->put('username', $checkExists['username']);
 
     			return redirect()->route('login-masyarakat')->withSucceed('Login Berhasil. '. $checkExists['nama']);

@@ -16,6 +16,11 @@ class Pengaduan extends Model
     	return $this->belongsTo(Masyarakat::class, 'nik', 'nik');
     }
 
+    public function tanggapan()
+    {
+        return $this->hasMany(Tanggapan::class, 'id_pengaduan', 'id');
+    }
+
     public function getTglPengaduanAttribute($value) 
     {
     	return date('d M Y', strtotime($value));

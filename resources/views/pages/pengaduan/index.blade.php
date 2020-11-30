@@ -1,6 +1,10 @@
 @extends('layouts.default')
 
 @section('content')
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800"><b>Pengaduan</b></h1>
+</div>
+
 <div class="card shadow mb-4">
 		<div class="card-header py-3">
 			<a href="{{ route('pengaduan.create') }}" class="btn btn-primary">+ add new</a>
@@ -39,7 +43,7 @@
 	                      	@if ($item->status == 'proses')
 								<span class="badge badge-secondary p-2">
 							@elseif($item->status == 'selesai')
-								<span class="badge badge-success">
+								<span class="badge badge-success p-2">
 							@else
 								<span>
 							@endif

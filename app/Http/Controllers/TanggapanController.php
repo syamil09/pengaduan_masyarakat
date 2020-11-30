@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Tanggapan;
+use App\Models\Pengaduan;
 
 class TanggapanController extends Controller
 {
@@ -24,10 +25,11 @@ class TanggapanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($idPengaduan)
     {
-        $itemEdit = false;
-        return redirect()->route('portfolio-category.index');
+        $item = Pengaduan::findOrFail($idPengaduan);
+
+        return view('pages.tanggapan.create', compact('item'));
     }
 
     /**
@@ -39,16 +41,21 @@ class TanggapanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required'
+            'tanggapan' => 'required'
         ]);
 
-        $data = $request->all();
-        if (Category::create($data)) {
-            return redirect()->back()->with('success', 'Success add category');
-        }
-            return redirect()->back()->with('fail', 'Failed add category');
+        $request->merge([
+            'tgl_tanggapan' => date('Y-m-d'),
+            'id_petugas'    => 4 
+        ]);
 
-        
+        $data = $request->only('tanggapan', 'tgl_tanggapan', 'id_petugas', 'id_pengaduan');
+
+        Tanggapan::create($data);
+
+        return redirect()->route('tanggapan.show',$data['id_pengaduan'])
+                        ->withSucceed('Berhasil Menambahkan Tanggapan');
+  
     }
 
     /**
@@ -59,9 +66,10 @@ class TanggapanController extends Controller
      */
     public function show($id)
     {
-        $items = Tanggapan::whereIdPengaduan($id)->get();
-
-        return view('pages.tanggapan.index', compact('items'));
+        $items = Tanggapan::with('petugas')->whereIdPengaduan($id)->get();
+        $pengaduan = Pengaduan::findOrFail($id);
+        
+        return view('pages.tanggapan.index', compact('items', 'pengaduan'));
     }
 
     /**
@@ -74,7 +82,7 @@ class TanggapanController extends Controller
     {
         $item = Tanggapan::find($id) ?? '';
 
-        return view('pages.pengaduan.tanggapan', compact('item'));
+        return view('pages.tanggapan.create', compact('item'));
     }
 
     /**
@@ -106,13 +114,10 @@ class TanggapanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Tanggapan $tanggapan)
     {
-        $item = Category::findOrFail($id);
+        $tanggapan->delete();
 
-        if ($item->delete()) {
-            return redirect()->back()->with('success', 'Success deleted data');
-        }
-        return redirect()->back()->with('fail', 'Failed deleted data');
+        return redirect()->back()->withSucceed('Berhasil Menghapus Tanggapan');
     }
 }

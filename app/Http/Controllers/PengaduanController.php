@@ -41,7 +41,7 @@ class PengaduanController extends Controller
     {
         $foto = $request->file('foto');
         $request->merge([
-            'nik' => session()->get('nik'),
+            'nik' => session()->get('user_id'),
             'tgl_pengaduan' => date('Y-m-d')
         ]);
      
@@ -70,13 +70,10 @@ class PengaduanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Pengaduan $pengaduan)
+    public function show($idPengaduan)
     {
-        $item = $pengaduan;
-        $item['nama_masyarakat'] = $pengaduan->masyarakat()
-                                        ->select('nama')
-                                        ->first()['nama'];
-        // dd($item);
+        $item = Pengaduan::with('masyarakat', 'tanggapan.petugas')->find($idPengaduan);
+
         return view('pages.pengaduan.detail', compact('item'));
     }
 
@@ -123,6 +120,17 @@ class PengaduanController extends Controller
 
     }
 
+    public function setStatus(Request $request, $id)
+    {
+        // dd($request->all(), $pengaduan);
+
+        Pengaduan::findOrfail($id)->update([
+            'status' => $request->status
+        ]);
+
+        return redirect()->back()->withSucceed('Status Pengaduan Updated');
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -137,3 +145,4 @@ class PengaduanController extends Controller
         return redirect()->back()->with('success', 'Data deleted');
     }
 }
+

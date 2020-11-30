@@ -1,7 +1,13 @@
 @extends('layouts.default')
 
 @section('content')
-<a href="{{ route('pengaduan.index') }}" class="btn btn-primary btn-sm mb-3">Kembali</a>
+<div class="d-sm-flex align-items-center justify-content-start mb-4">
+	<a href="{{ route('pengaduan.index') }}" class="btn btn-secondary btn-circle mr-3">
+		<i class="fas fa-arrow-left"></i>
+	</a>
+    <h1 class="h3 mb-0 text-gray-800"><b>Detail Pengaduan</b></h1>
+</div>
+
 <div class="card shadow">
 	<div class="card-body">
 
@@ -36,16 +42,21 @@
 			<h1><b>Tanggapan</b></h1>
 		</div>
 
+		@forelse ($item->tanggapan as $tanggapan)
 		<div class="form-group row">
 			<label for="" class="col-md-2"><b>Nama Petugas : </b></label>
-			<p class="col-md-9">Diki</p>
+			<p class="col-md-9">{{ $tanggapan->petugas->nama }}</p>
 			<label for="" class="col-md-2"><b>Tgl Tanggapan : </b></label>
-			<p class="col-md-9">21 Nov 2020</p>
+			<p class="col-md-9">{{ date('d M Y',strtotime($tanggapan->tgl_tanggapan)) }}</p>
 			<label for="" class="col-md-2"><b>Tanggapan : </b></label>
 			<p class="col-md-9">
-				Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus eos molestiae iusto ullam consectetur aspernatur totam adipisci et illo harum fugiat omnis aliquam sint cupiditate hic rerum corrupti, provident ipsam.
+				{{ $tanggapan->tanggapan }}
 			</p>
 		</div>
+		<hr>
+		@empty
+
+		@endforelse
 		<div class="form-group row">
 			
 		</div>

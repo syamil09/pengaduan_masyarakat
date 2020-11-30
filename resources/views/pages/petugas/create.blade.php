@@ -1,7 +1,14 @@
 @extends('layouts.default')
 
 @section('content')
-<a href="{{ route('pengaduan.index') }}" class="btn btn-primary btn-sm mb-3">Kembali</a>
+
+<div class="d-sm-flex align-items-center justify-content-start mb-4">
+	<a href="{{ route('petugas.index') }}" class="btn btn-secondary btn-circle mr-3">
+		<i class="fas fa-arrow-left"></i>
+	</a>
+    <h1 class="h3 mb-0 text-gray-800"><b>Tambah Petugas</b></h1>
+</div>
+
 <div class="card shadow">
 	<div class="card-body">
 			@if(session('failed'))
