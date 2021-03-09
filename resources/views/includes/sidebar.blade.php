@@ -43,7 +43,7 @@
           <span>Profile</span></a>
       </li>
 
-      @if (session()->get('level') == 'petugas')
+      @if (session()->get('level') == 'admin')
       <li class="nav-item {{ Request::is('cms/petugas*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('petugas.index') }}">
           <i class="fas fa-fw fa-users"></i>
