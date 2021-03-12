@@ -49,7 +49,7 @@
 	                            <label for="No Telpon" class="col-md-4 col-form-label text-md-right">Password</label>
 
 	                            <div class="col-md-6">
-	                                <input id="No Telpon" type="text" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="password" autofocus>
+	                                <input id="No Telpon" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" required autocomplete="password" autofocus>
 
 	                                @error('password')
 	                                    <span class="invalid-feedback" role="alert">
